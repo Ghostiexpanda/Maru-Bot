@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+const { spawn } = require('child_process');
 const Functions = require("../../database/models/functions");
 const afk = require("../../database/models/afk");
 const chatBotSchema = require("../../database/models/chatbot-channel");
@@ -26,6 +26,25 @@ module.exports = async (client, message) => {
   });
 
   if (message.author.bot) return;
+
+  if (message.content.startsWith('!restart') && message.author.id === '893038810902958130') {
+    try {
+        message.channel.send('Restarting the bot...');
+
+        // Spawn a new process to run the bot again in a new command prompt window
+        const subprocess = spawn('start', ['cmd.exe', '/c', 'node index.js --trace-warnings'], {
+            shell: true
+        });
+
+        // Wait for 5 seconds to let the new process start
+        setTimeout(() => {
+            // Exit the current process
+            process.exit();
+        }, 5000);
+    } catch (e) {
+        console.log(e.message);
+    }
+}
 
   if (message.channel.type === Discord.ChannelType.DM) {
     let embedLogs = new Discord.EmbedBuilder()

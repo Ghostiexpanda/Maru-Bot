@@ -34,6 +34,7 @@
     "axios": "^1.2.2",
     "canvacord": "^5.4.8",
     "chalk": "^4.1.2",
+    "child_process": "^1.0.2",
     "discord-giveaways": "^6.0.1",
     "discord-image-generation": "^1.4.23",
     "discord.js": "^14.7.1",
